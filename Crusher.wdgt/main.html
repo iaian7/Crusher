@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" type="text/css" href="Parts/Transitions.css">
+    <script type="text/javascript" src="Parts/parts.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleAnimator.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleButton.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleInfoButton.js" charset="utf-8"></script>
+    <script type="text/javascript" src="localizedStrings.js" charset="utf-8"></script>
+    <script type="text/javascript" src="main.js" charset="utf-8"></script>
+    <script type="text/javascript" src="file:///System/Library/WidgetResources/AppleClasses/AppleSlider.js" charset="utf-8"></script>
+</head>
+<body onload="load();">
+    <div id="front">
+        <img id="frontImg" src="Parts/Images/front.png" alt="">
+        <div id="stack"><div id="main">
+                <div id="settingsBox">
+                    <div id="dither">
+                        <input type="checkbox" name="dither" id="ditherInput" value="dither" onchange="updateDither(event)">
+                        <div id="ditherText" onclick="updateDither(event)">dither</div>
+                    </div>
+                    <div id="ie6">
+                        <input type="checkbox" name="dither" id="ie6Input" value="dither" onchange="updateIE6(event)">
+                        <div id="ie6Text" onclick="updateIE6(event)">IE6 fix</div>
+                    </div>
+                    <div id="colorsText">colors</div>
+                    <input id="colors" type="text" name="colors" value="256" maxlength="3" onkeyup="updateColors(event)" onblur="updatePrefs(event)">
+                </div>
+                <div id="sliderBackground"></div>
+                <input id="slider" type="range" min="8" value="256" max="256" onchange="updateSlider(event)" onblur="updatePrefs(event)">
+                <div id="input" ondrop="dragDrop(event)" ondragover="dragOver(event)" ondragenter="dragEnter(event)">
+                    <div id="image"><img src="Images/Crusher-Icon-64.png" id="inner_image"></div>
+                    <div id="drop"></div>
+                    <div id="dropDetail"></div>
+                </div>
+            </div><div id="success">
+                <div id="successText"></div>
+                <div id="successDetails"></div>
+                <div id="successButton"></div>
+            </div><div id="fail" style="display: block; ">
+                <div id="failText"></div>
+                <div id="failButton"></div>
+            </div><div id="wrong" style="display: block; ">
+                <div id="wrongText"></div>
+                <div id="wrongButton"></div>
+            </div><div id="update">
+                <div id="new"></div>
+                <div id="newVersion"></div>
+                <div id="skip"></div>
+                <div id="download"></div>
+            </div></div>
+        <div id="info"></div>
+    </div>
+    <div id="back">
+        <img id="backImg" src="Parts/Images/back.png" alt="">
+        <div id="locationText"></div>
+        <input type="text" name="loc" value="/opt/local/bin/" id="loc" onchange="updateLoc(event)" onkeyup="updateLoc(event)">
+        <div id="qualityText"></div>
+        <div id="quality"></div>
+        <div id="overwriteText"></div>
+        <div id="overwrite"></div>
+        <div id="namingText"></div>
+        <input type="text" name="name" value=".colors" id="name" maxlength="20" onkeyup="updateName(event)" onchange="updateName(event)">
+        <div id="nameText"></div>
+        <input type="text" name="nameDither" value=".dither" id="nameDither" maxlength="20" onkeyup="updateNameDither(event)" onchange="updateNameDither(event)">
+        <div id="nameDitherText"></div>
+        <input type="text" name="nameIE6" value=".ie6" id="nameIE6" maxlength="20" onkeyup="updateNameIE6(event)" onchange="updateNameIE6(event)">
+        <div id="nameIE6Text"></div>
+        <div id="iaian7com" onclick="iaian7(event)"></div>
+        <div id="text"></div>
+        <div id="doneSave"></div>
+    </div>
+</body>
+</html>
