@@ -34,7 +34,7 @@ function remove()
 function hide()
 {
 	// Stop any timers to prevent CPU usage
-	savePrefs();
+	updatePrefs();
 }
 
 //
@@ -157,12 +157,6 @@ function loadPrefs() {
 	document.getElementById("nameDither").value = prefNameDither;
 	document.getElementById("nameIE6").value = prefNameIE6;
 //	updateDither(dither);
-}
-
-function savePref(key,value) {
-	if (window.widget) {
-		widget.setPreferenceForKey(value,wid+key);
-	}
 }
 
 function updatePrefs() {
@@ -472,10 +466,10 @@ function versionCheckEnd(request){
 			document.getElementById("newVersion").innerHTML = "version "+versions[0]+"<br/>"+versions[1];
 			return showUpdate();
 		} else {
-			alert("you have an up to date version");
+//			alert("you have an up to date version");
 		}
 	} else {
-		alert("there's been an error fetching HTTP data");
+//		alert("there's been an error fetching HTTP data");
 	}
 }
 

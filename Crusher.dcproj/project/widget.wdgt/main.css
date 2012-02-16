@@ -353,10 +353,10 @@ body {
     line-height: 10px;
     margin-right: auto;
     margin-top: auto;
-    bottom: 30px;
     height: 25px;
     font-size: 11px;
     letter-spacing: 0px;
+    bottom: 28px;
 }
 
 #loc {
