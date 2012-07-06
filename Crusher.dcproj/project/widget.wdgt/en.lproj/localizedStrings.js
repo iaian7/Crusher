@@ -26,10 +26,11 @@ var localizedStrings = {
     "qualityText": "quality speed",
     "scaleText": "quality speed",
     "skip": "skip version",
-    "success": "file processing successful, busy creating sheets",
+    "success": "file processing successful, busy compressing",
     "successDetails": "depending on image size\nthis could take a minute",
     "wrong": "wrong file format\nplease try again"
 };
+
 
 
 
