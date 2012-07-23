@@ -17,13 +17,17 @@
         <img id="frontImg" src="Parts/Images/front.png" alt="" apple-locked="true" apple-part="com.apple.Dashcode.part.frontimage" apple-style="image-theme: 0; image-shape: 3; image-opacity: 1.00; image-top-color: 0.150000006,0.150000006,0.150000006,1; image-bottom-color: 0.6,0.6,0.6,1; image-radius: 10,10,10,10; image-border: 1; image-border-color: 0,0,0,1; image-border-width: 1; shine-on: 1; shine-strength: 0.10; shine-alpha-level: 1.00; shine-height: 0.80; glass-arc-height: 0.00; embossed-on: 0; embossed-depth: 1; embossed-shadow: 0.7; embossed-highlight: 0.3; shadow-include-shadow: 1; shadow-offset: -1.00,-6.00; shadow-color: 0,0,0,0.3333;">
         <div apple-part="com.apple.Dashcode.part.StackLayout" id="stack"><div id="main" apple-part-locked="true">
                 <div id="settingsBox" apple-part="com.apple.Dashcode.part.box">
+                    <div id="median" apple-part="com.apple.Dashcode.part.checkboxbutton" apple-group="checkbox">
+                        <input type="checkbox" name="median" apple-part="com.apple.Dashcode.part.input" id="medianInput" apple-group="checkbox" value="median" onchange="updateMedian(event)">
+                        <div id="medianText" onclick="updateMedian(event)">median</div>
+                    </div>
+                    <div id="posterize" apple-part="com.apple.Dashcode.part.checkboxbutton" apple-group="checkbox">
+                        <input type="checkbox" name="posterize" apple-part="com.apple.Dashcode.part.input" id="posterizeInput" apple-group="checkbox" value="posterize" onchange="updatePosterize(event)">
+                        <div id="posterizeText" onclick="updatePosterize(event)">posterize</div>
+                    </div>
                     <div id="dither" apple-part="com.apple.Dashcode.part.checkboxbutton" apple-group="checkbox">
                         <input type="checkbox" name="dither" apple-part="com.apple.Dashcode.part.input" id="ditherInput" apple-group="checkbox" value="dither" onchange="updateDither(event)">
                         <div id="ditherText" onclick="updateDither(event)">dither</div>
-                    </div>
-                    <div id="ie6" apple-part="com.apple.Dashcode.part.checkboxbutton" apple-group="checkbox">
-                        <input type="checkbox" name="dither" apple-part="com.apple.Dashcode.part.input" id="ie6Input" apple-group="checkbox" value="dither" onchange="updateIE6(event)">
-                        <div id="ie6Text" onclick="updateIE6(event)">IE6 fix</div>
                     </div>
                     <div id="colorsText">colors</div>
                     <input id="colors" type="text" name="colors" value="256" class="apple-textfield apple-no-children" apple-part="com.apple.Dashcode.part.textfield" maxlength="3" onkeyup="updateColors(event)" onblur="updatePrefs(event)">
@@ -62,15 +66,14 @@
         <div apple-part="com.apple.Dashcode.part.text" class="apple-text apple-no-children" apple-text-overflow="ellipsis" id="overwriteText"></div>
         <div apple-part="com.apple.Dashcode.part.roundedpopupbutton" class="apple-no-children" apple-style="image-theme: 0; image-shape: 3; image-button-type: 1; image-opacity: 1.00; image-top-color: 0,0,0,1; image-bottom-color: 0.6,0.6,0.6,1; image-radius: 5,5,5,5; image-border: 1; image-border-color: 0,0,0,1; image-border-width: 1; shine-on: 1; shine-strength: 0.25; shine-alpha-level: 1.00; shine-height: 0.50; glass-arc-height: 0.00; embossed-on: 0; embossed-depth: 1; embossed-shadow: 0.5; embossed-highlight: 0.5; shadow-include-shadow: 0;" id="overwrite"></div>
         <div apple-part="com.apple.Dashcode.part.text" class="apple-text apple-no-children" apple-text-overflow="ellipsis" id="namingText"></div>
-        <input type="text" name="name" value=".colors" class="apple-textfield apple-no-children" apple-part="com.apple.Dashcode.part.textfield" id="name" apple-text-overflow="" maxlength="20" onkeyup="updateName(event)" onchange="updateName(event)">
-        <div apple-part="com.apple.Dashcode.part.text" class="apple-text apple-no-children" apple-text-overflow="ellipsis" id="nameText"></div>
-        <input type="text" name="nameDither" value=".dither" class="apple-textfield apple-no-children" apple-part="com.apple.Dashcode.part.textfield" id="nameDither" apple-text-overflow="" maxlength="20" onkeyup="updateNameDither(event)" onchange="updateNameDither(event)">
-        <div apple-part="com.apple.Dashcode.part.text" class="apple-text apple-no-children" apple-text-overflow="ellipsis" id="nameDitherText"></div>
-        <input type="text" name="nameIE6" value=".ie6" class="apple-textfield apple-no-children" apple-part="com.apple.Dashcode.part.textfield" id="nameIE6" apple-text-overflow="" maxlength="20" onkeyup="updateNameIE6(event)" onchange="updateNameIE6(event)">
-        <div apple-part="com.apple.Dashcode.part.text" class="apple-text apple-no-children" apple-text-overflow="ellipsis" id="nameIE6Text"></div>
+        <input type="text" name="name" value="." class="apple-textfield apple-no-children" apple-part="com.apple.Dashcode.part.textfield" id="name" apple-text-overflow="" maxlength="20" onkeyup="updateName(event)" onchange="updateName(event)">
         <div apple-part="com.apple.Dashcode.part.text" class="apple-text apple-no-children" apple-text-overflow="ellipsis" id="iaian7com" onclick="iaian7(event)"></div>
         <div apple-part="com.apple.Dashcode.part.text" class="apple-text apple-no-children" apple-text-overflow="ellipsis" id="text"></div>
         <div apple-part="com.apple.Dashcode.part.roundedtextbutton" class="apple-no-children" apple-style="image-theme: 0; image-shape: 3; image-button-type: 0; image-opacity: 1.00; image-top-color: 0,0,0,1; image-bottom-color: 0.6,0.6,0.6,1; image-radius: 5,5,5,5; image-border: 1; image-border-color: 0,0,0,1; image-border-width: 1; shine-on: 1; shine-strength: 0.25; shine-alpha-level: 1.00; shine-height: 0.50; glass-arc-height: 0.00; embossed-on: 0; embossed-depth: 1; embossed-shadow: 0.5; embossed-highlight: 0; shadow-include-shadow: 0;" id="doneSave"></div>
+        <div id="ie6" apple-part="com.apple.Dashcode.part.checkboxbutton" apple-group="ie6">
+            <input type="checkbox" name="dither" apple-part="com.apple.Dashcode.part.input" id="ie6Input" apple-group="ie6" value="dither" onchange="updateIE6(event)">
+            <div id="ie6Text" onclick="updateIE6(event)">IE6 fix</div>
+        </div>
     </div>
 </body>
 </html>

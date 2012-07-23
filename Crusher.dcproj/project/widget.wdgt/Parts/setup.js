@@ -15,15 +15,12 @@ var dashcodePartSpecs = {
     "image": { "view": "DC.ImageLayout" },
     "info": { "backgroundStyle": "black", "creationFunction": "CreateInfoButton", "foregroundStyle": "white", "frontID": "front", "onclick": "showBack", "view": "DC.View" },
     "locationText": { "text": "locationText", "view": "DC.Text" },
-    "nameDitherText": { "text": "nameDitherText", "view": "DC.Text" },
-    "nameIE6Text": { "text": "nameIE6Text", "view": "DC.Text" },
-    "nameText": { "text": "nameText", "view": "DC.Text" },
     "namingText": { "text": "namingText", "view": "DC.Text" },
     "new": { "text": "new", "view": "DC.Text" },
     "newVersion": { "text": "newVersion", "view": "DC.Text" },
-    "overwrite": { "creationFunction": "CreatePopupButton", "leftImageWidth": 5, "name": "output", "onchange": "updateOverwrite", "options": [["never", "0"], ["overwrite existing", "1"]], "rightImageWidth": 16, "view": "DC.View" },
+    "overwrite": { "creationFunction": "CreatePopupButton", "leftImageWidth": 5, "name": "output", "onchange": "updateOverwrite", "options": [["never", "0"], ["always", "1"]], "rightImageWidth": 16, "view": "DC.View" },
     "overwriteText": { "text": "overwriteText", "view": "DC.Text" },
-    "quality": { "creationFunction": "CreatePopupButton", "leftImageWidth": 5, "name": "scale", "onchange": "updateQuality", "options": [["1 (slow/best)", "1"], ["2", "Item 2"], ["3 (default)", "Item 3", true], ["4", "Item 4"], ["5", "Item 5"], ["6", "Item 6"], ["7", "Item 7"], ["8", "Item 8"], ["9", "Item 9"], ["10 (fast/rough)", "Item 10"]], "rightImageWidth": 16, "view": "DC.View" },
+    "quality": { "creationFunction": "CreatePopupButton", "leftImageWidth": 5, "name": "scale", "onchange": "updateQuality", "options": [["1 (slow/best)", "1"], "2", ["3 (default)", "3"], "4", "5", "6", "7", "8", "9", ["10 (fast/rough)", "10"]], "rightImageWidth": 16, "view": "DC.View" },
     "qualityText": { "text": "qualityText", "view": "DC.Text" },
     "skip": { "creationFunction": "CreateButton", "leftImageWidth": 5, "onclick": "showMain", "rightImageWidth": 5, "text": "skip", "view": "DC.View" },
     "sliderBackground": { "creationFunction": "CreateShape", "leftImageWidth": 5, "rightImageWidth": 5 },
@@ -35,6 +32,7 @@ var dashcodePartSpecs = {
     "wrongButton": { "creationFunction": "CreateButton", "leftImageWidth": 5, "onclick": "showMain", "rightImageWidth": 5, "text": "done", "view": "DC.View" },
     "wrongText": { "text": "wrong", "view": "DC.Text" }
 };
+
 
 
 
