@@ -74,7 +74,7 @@ body {
     margin-left: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
-    border-color: rgba(0, 0, 0, 0.496094);
+    border-color: rgba(0, 0, 0, 0.5);
     width: auto;
     margin-right: 0px;
     min-height: 140px;
@@ -536,6 +536,7 @@ body {
     margin-right: auto;
     bottom: 0px;
     margin-top: auto;
+    -khtml-user-select: text;
 }
 
 #namingText {
@@ -580,49 +581,23 @@ body {
     height: auto;
 }
 
-#dither {
-    font-family: HelveticaNeue;
-    height: 18px;
-    position: absolute;
-    color: rgb(255, 255, 255);
-    font-size: 10pt;
-    top: 27px;
-    width: 58px;
-    left: 155px;
-    margin-right: auto;
-}
-
-#ditherText {
-    position: absolute;
-    left: 18px;
-    text-align: left;
-    vertical-align: middle;
-    font-size: 13px;
-    top: 1px;
-    width: auto;
-    bottom: 2px;
-    height: auto;
-    right: 6px;
-}
-
 #colorsText {
     position: absolute;
     vertical-align: middle;
     font-weight: normal;
     font-style: normal;
     font-family: HelveticaNeue;
-    font-size: 13px;
     color: rgb(255, 255, 255);
     height: 15px;
     text-align: right;
-    width: 35px;
+    font-size: 14px;
+    right: 6px;
     margin-left: auto;
+    bottom: 6px;
     margin-top: auto;
-    left: auto;
-    top: auto;
-    right: 5px;
-    bottom: 5px;
-    visibility: hidden;
+    width: 40px;
+    cursor: default;
+    -khtml-user-select: none;
 }
 
 #colors {
@@ -639,7 +614,7 @@ body {
     text-align: center;
     font-size: 14px;
     width: 30px;
-    right: 3px;
+    right: 48px;
     margin-left: auto;
     bottom: 2px;
     margin-top: auto;
@@ -662,32 +637,6 @@ body {
     margin-bottom: auto;
     width: auto;
     right: 0px;
-}
-
-#posterize {
-    font-family: HelveticaNeue;
-    height: 18px;
-    position: absolute;
-    color: rgb(255, 255, 255);
-    font-size: 10pt;
-    width: 78px;
-    left: 75px;
-    margin-right: auto;
-    bottom: 3px;
-    margin-top: auto;
-}
-
-#posterizeText {
-    position: absolute;
-    left: 18px;
-    text-align: left;
-    vertical-align: middle;
-    font-size: 13px;
-    top: 1px;
-    width: auto;
-    bottom: 2px;
-    height: auto;
-    right: 6px;
 }
 
 #ie6 {
@@ -716,30 +665,58 @@ body {
     font-size: 13px;
 }
 
-#median {
-    font-family: HelveticaNeue;
-    height: 18px;
+#type {
     position: absolute;
-    right: auto;
-    bottom: 3px;
-    margin-top: auto;
-    margin-right: auto;
+    font-size: 14px;
+    cursor: default;
+    -khtml-user-select: none;
+    text-shadow: rgb(0, 0, 0) 0px -1px 0px;
     color: rgb(255, 255, 255);
-    font-size: 10pt;
-    top: 37px;
-    width: 78px;
-    left: 5px;
+    font-family: 'Helvetica Neue';
+    letter-spacing: 0px;
+    height: 25px;
+    left: 0px;
+    margin-right: auto;
+    bottom: 0px;
+    margin-top: auto;
+    text-align: left;
+    width: 90px;
 }
 
-#medianText {
+#dither {
     position: absolute;
-    left: 18px;
+    font-size: 14px;
+    cursor: default;
+    -khtml-user-select: none;
+    text-shadow: rgb(0, 0, 0) 0px -1px 0px;
+    color: rgb(255, 255, 255);
+    font-family: 'Helvetica Neue';
+    letter-spacing: 0px;
+    height: 25px;
     text-align: left;
-    vertical-align: middle;
-    font-size: 13px;
-    top: 1px;
+    width: 85px;
+    left: 90px;
+    margin-right: auto;
+    bottom: 0px;
+    margin-top: auto;
+}
+
+#failDetails {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: absolute;
+    margin-top: 0px;
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(0, 0, 0) 0px -1px 1px;
+    min-height: 0px;
+    text-align: center;
     width: auto;
-    bottom: 2px;
-    height: auto;
-    right: 6px;
+    margin-bottom: auto;
+    left: 20px;
+    right: 20px;
+    top: 70px;
+    height: 50px;
+    font-family: 'Helvetica Neue';
+    opacity: 0.5;
+    font-size: 12px;
 }

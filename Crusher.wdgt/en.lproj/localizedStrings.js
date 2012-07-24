@@ -11,25 +11,28 @@ var localizedStrings = {
     "drop": "drop image files here",
     "dropDetail": "24bit PNG only",
     "fail": "file processing failed\nplease try again",
+    "failDetails": "make sure all selected files\nare valid PNG images",
     "iaian7com": "For more information,\niaian7.com/dashboard/crusher",
-    "locationText": "PNGquant",
+    "locationText": "PNGquant & posterizer",
     "nameDitherText": "if dithered",
     "nameFileText": "file sheet prefix",
     "nameIE6Text": "if ie6",
     "nameSpriteText": "%d = number of colors",
     "nameText": "colors = #",
-    "namingText": "file naming",
+    "namingText": "file name spacer",
     "new": "new update available!",
     "newVersion": "version number\nversion description",
     "outputText": "overwrite files",
-    "overwriteText": "file override",
-    "qualityText": "quality speed",
+    "overwriteText": "overwrite files",
+    "qualityText": "quality versus speed",
     "scaleText": "quality speed",
     "skip": "skip version",
-    "success": "file processing successful, busy creating sheets",
+    "success": "file processing successful, busy compressing",
     "successDetails": "depending on image size\nthis could take a minute",
     "wrong": "wrong file format\nplease try again"
 };
+
+
 
 
 

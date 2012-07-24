@@ -11,6 +11,7 @@ var localizedStrings = {
     "drop": "drop image files here",
     "dropDetail": "24bit PNG only",
     "fail": "file processing failed\nplease try again",
+    "failDetails": "make sure all selected files\nare valid PNG images",
     "iaian7com": "For more information,\niaian7.com/dashboard/crusher",
     "locationText": "PNGquant & posterizer",
     "nameDitherText": "if dithered",

@@ -5,11 +5,13 @@
  code generator otherwise the changes will be lost.
  */
 var dashcodePartSpecs = {
+    "dither": { "creationFunction": "CreatePopupButton", "leftImageWidth": 5, "name": "dither", "onchange": "updateDither", "options": [["no dither", "0"], ["dither", "1"], ["both", "2"]], "rightImageWidth": 16 },
     "doneSave": { "creationFunction": "CreateButton", "leftImageWidth": 5, "onclick": "showFront", "rightImageWidth": 5, "text": "done", "view": "DC.View" },
     "download": { "creationFunction": "CreateButton", "leftImageWidth": 5, "onclick": "versionDownload", "rightImageWidth": 5, "text": "download", "view": "DC.View" },
     "drop": { "text": "drop", "view": "DC.Text" },
     "dropDetail": { "text": "dropDetail", "view": "DC.Text" },
     "failButton": { "creationFunction": "CreateButton", "leftImageWidth": 5, "onclick": "showMain", "rightImageWidth": 5, "text": "done", "view": "DC.View" },
+    "failDetails": { "text": "failDetails", "view": "DC.Text" },
     "failText": { "text": "fail", "view": "DC.Text" },
     "iaian7com": { "text": "iaian7com", "view": "DC.Text" },
     "image": { "view": "DC.ImageLayout" },
@@ -18,7 +20,7 @@ var dashcodePartSpecs = {
     "namingText": { "text": "namingText", "view": "DC.Text" },
     "new": { "text": "new", "view": "DC.Text" },
     "newVersion": { "text": "newVersion", "view": "DC.Text" },
-    "overwrite": { "creationFunction": "CreatePopupButton", "leftImageWidth": 5, "name": "output", "onchange": "updateOverwrite", "options": [["never", "0"], ["always", "1"]], "rightImageWidth": 16, "view": "DC.View" },
+    "overwrite": { "creationFunction": "CreatePopupButton", "leftImageWidth": 5, "name": "output", "onchange": "updateOverwrite", "options": [["never", "0"], ["always", "1", true]], "rightImageWidth": 16, "view": "DC.View" },
     "overwriteText": { "text": "overwriteText", "view": "DC.Text" },
     "quality": { "creationFunction": "CreatePopupButton", "leftImageWidth": 5, "name": "scale", "onchange": "updateQuality", "options": [["1 (slow/best)", "1"], "2", ["3 (default)", "3"], "4", "5", "6", "7", "8", "9", ["10 (fast/rough)", "10"]], "rightImageWidth": 16, "view": "DC.View" },
     "qualityText": { "text": "qualityText", "view": "DC.Text" },
@@ -29,9 +31,11 @@ var dashcodePartSpecs = {
     "successDetails": { "text": "successDetails", "view": "DC.Text" },
     "successText": { "text": "success", "view": "DC.Text" },
     "text": { "text": "copyrightText", "view": "DC.Text" },
+    "type": { "creationFunction": "CreatePopupButton", "leftImageWidth": 5, "name": "type", "onchange": "updateType", "options": [["pngquant", "0"], ["posterizer", "1"], ["both", "2"]], "rightImageWidth": 16 },
     "wrongButton": { "creationFunction": "CreateButton", "leftImageWidth": 5, "onclick": "showMain", "rightImageWidth": 5, "text": "done", "view": "DC.View" },
     "wrongText": { "text": "wrong", "view": "DC.Text" }
 };
+
 
 
 

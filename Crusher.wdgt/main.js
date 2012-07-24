@@ -120,18 +120,15 @@ if (window.widget) {
 // Begin app-specific functions //
 // ---------------------------- //
 
-
-
 var wid = widget.identifier;
-var prefDither = loadPref(wid+"dither","false");
-var prefIE6 = loadPref(wid+"ie6","false");
+var prefType = loadPref(wid+"type",0);
+var prefDither = loadPref(wid+"dither",0);
 var prefColors = loadPref(wid+"colors","256");
 var prefLocation = loadPref(wid+"loc","/opt/local/bin/");
-var prefQuality = loadPref(wid+"quality",2);
+var prefQuality = loadPref(wid+"quality",0);
 var prefOverwrite = loadPref(wid+"overwrite",1);
-var prefName = loadPref(wid+"name",".colors");
-var prefNameDither = loadPref(wid+"nameDither",".dither");
-var prefNameIE6 = loadPref(wid+"nameIE6",".ie6");
+var prefName = loadPref(wid+"name",".");
+var prefIE6 = loadPref(wid+"ie6","false");
 
 // Preference Saving
 
@@ -146,51 +143,46 @@ function loadPref(key,value) {
 }
 
 function loadPrefs() {
-//	alert("ready!");
-	document.getElementById("dither").checked = prefDither;
-	document.getElementById("ie6").checked = prefDither;
+	document.getElementById("type").object.setSelectedIndex(prefType);
+	document.getElementById("dither").object.setSelectedIndex(prefDither);
 	document.getElementById("colors").value = prefColors;
 	document.getElementById("loc").value = prefLocation;
 	document.getElementById("quality").object.setSelectedIndex(prefQuality);
 	document.getElementById("overwrite").object.setSelectedIndex(prefOverwrite);
 	document.getElementById("name").value = prefName;
-	document.getElementById("nameDither").value = prefNameDither;
-	document.getElementById("nameIE6").value = prefNameIE6;
+	document.getElementById("ie6").checked = prefIE6;
 //	updateDither(dither);
 }
 
 function updatePrefs() {
 	if (window.widget) {
+		widget.setPreferenceForKey(prefType,wid+"type");
 		widget.setPreferenceForKey(prefDither,wid+"dither");
-		widget.setPreferenceForKey(prefIE6,wid+"ie6");
 		widget.setPreferenceForKey(prefColors,wid+"colors");
 		widget.setPreferenceForKey(prefLocation,wid+"loc");
 		widget.setPreferenceForKey(prefQuality,wid+"quality");
 		widget.setPreferenceForKey(prefOverwrite,wid+"overwrite");
 		widget.setPreferenceForKey(prefName,wid+"name");
-		widget.setPreferenceForKey(prefNameDither,wid+"nameDither");
-		widget.setPreferenceForKey(prefNameIE6,wid+"nameIE6");
+		widget.setPreferenceForKey(prefIE6,wid+"ie6");
 	}
 }
 
 function erasePrefs() {
 	if (window.widget) {
+		widget.setPreferenceForKey(null,wid+"type");
 		widget.setPreferenceForKey(null,wid+"dither");
-		widget.setPreferenceForKey(null,wid+"ie6");
 		widget.setPreferenceForKey(null,wid+"colors");
 		widget.setPreferenceForKey(null,wid+"loc");
 		widget.setPreferenceForKey(null,wid+"quality");
 		widget.setPreferenceForKey(null,wid+"overwrite");
 		widget.setPreferenceForKey(null,wid+"name");
-		widget.setPreferenceForKey(null,wid+"nameDither");
-		widget.setPreferenceForKey(null,wid+"nameIE6");
+		widget.setPreferenceForKey(null,wid+"ie6");
 	}
 }
 
 // Basic Functions
 
 function updateSlider(event) {
-//	alert("updateSlider parse: "+parseInt(parseFloat(document.getElementById("slider").value)));
 	prefColors = parseInt(parseFloat(document.getElementById("slider").value));
 	document.getElementById("colors").value = prefColors;
 	document.getElementById("slider").value = prefColors;
@@ -229,17 +221,34 @@ function updateColors(event) {
 	document.getElementById("slider").value = prefColors;
 }
 
-function updateDither(event) {
-	if (event.target.id == "ditherInput") {
-		prefDither = event.target.checked;
-//		prefDither = document.getElementById("ditherInput").checked;
-	} else {
-		var element = document.getElementById("ditherInput");
-		element.checked = (element.checked)?false:true;
-		prefDither = element.checked;
-	}
+
+
+function updateType(event) {
+	prefType = document.getElementById("type").object.getSelectedIndex();
 	updatePrefs();
-	alert("prefDither: "+prefDither);
+}
+
+function updateDither(event) {
+	prefDither = document.getElementById("dither").object.getSelectedIndex();
+	updatePrefs();
+}
+
+function updateLoc(event) {
+	prefLoc = document.getElementById("loc").value;
+}
+
+function updateQuality(event) {
+	prefQuality = document.getElementById("quality").object.getSelectedIndex();
+	updatePrefs();
+}
+
+function updateOverwrite(event) {
+	prefOverwrite = document.getElementById("overwrite").object.getSelectedIndex();
+	updatePrefs();
+}
+
+function updateName(event) {
+	prefName = document.getElementById("name").value;
 }
 
 function updateIE6(event) {
@@ -252,40 +261,11 @@ function updateIE6(event) {
 		prefIE6 = element.checked;
 	}
 	updatePrefs();
-	alert("prefIE6: "+prefIE6);
 }
 
-function updateLoc(event) {
-	prefLoc = document.getElementById("loc").value;
-	alert("prefLoc: "+prefLoc);
-}
 
-function updateQuality(event) {
-	prefQuality = document.getElementById("quality").object.getSelectedIndex();
-	updatePrefs();
-	alert("prefQuality: "+prefQuality);
-}
 
-function updateOverwrite(event) {
-	prefOverwrite = document.getElementById("overwrite").object.getSelectedIndex();
-	updatePrefs();
-	alert("prefOverwrite: "+prefOverwrite);
-}
 
-function updateName(event) {
-	prefName = document.getElementById("name").value;
-	alert("prefName: "+prefName);
-}
-
-function updateNameDither(event) {
-	prefNameDither = document.getElementById("nameDither").value;
-	alert("prefNameDither: "+prefNameDither);
-}
-
-function updateNameIE6(event) {
-	prefNameIE6 = document.getElementById("nameIE6").value;
-	alert("prefNameIE6: "+prefNameIE6);
-}
 
 function selectIt(event) {
 	if(event.target){
@@ -311,39 +291,60 @@ function dragDrop(event) {
 try {
 	uri = event.dataTransfer.getData("text/uri-list");
 	uri = uri.replace(/file:\/\/localhost/gi, "");
-	uri = uri.replace(/\%20/gi, "\\ ");
+//	uri = uri.replace(/\%20/gi, "\\ "); // Decodes and escapes spaces
+	uri = unescape(uri);
+	uri = uri.replace(/ /gi, "\\ "); // Escape just spaces (trying to do this using \s in the next replace results in multiline breakdown)
+	uri = uri.replace(/[\~\`\^\*\(\)\[\]\{\}\?\!\$\&\|\<\>\;\"'"\'"']/gi, "\\$&"); // Escape Unix command line characters (yes, you actually CAN use all of these in folder and file names!)
 	uri = uri.split("\n");
 	uri = uri.sort(sortAlphaNum);
-	alert("uri list: "+uri.join("\n"));
-var	settings  = (prefOverwrite)?" -force":"";
-	settings += " -speed "+(prefQuality+1);
-	settings += (prefDither == true)?"":" -nofs";
-	settings += (prefIE6 == true)?" -iebug":"";
-	settings += " -ext "+prefName.replace("colors",prefColors);
-	settings += (prefDither == true)?prefNameDither:"";
-	settings += (prefIE6 == true)?prefNameIE6:"";
-	settings += ".png "+prefColors+" ";
-	alert("settings: "+settings);
-
-/*	if (uri.length == 1) {
-		if (prefOverwrite == 0 || prefOverwrite == 3) widget.system(prefLocation+"montage -background none -alpha set "+scale+colors+" -geometry "+geometry+mode+uriParts[1]+"*"+uriParts[3]+" "+name, endHandler).outputString;
-		if (prefOverwrite == 1 || prefOverwrite == 3) widget.system(prefLocation+"montage -background none -alpha off "+scale+colors+" -geometry "+geometry+mode+uriParts[1]+"*"+uriParts[3]+" "+nameRGB, endHandler).outputString;
-		if (prefOverwrite == 2 || prefOverwrite == 3) widget.system(prefLocation+"montage -background none -alpha extract "+scale+colors+" -geometry "+geometry+mode+uriParts[1]+"*"+uriParts[3]+" "+nameAlpha, endHandler).outputString;
-		alert(prefLocation+"montage -background none -alpha extract "+scale+colors+" -geometry "+geometry+mode+uriParts[1]+"*"+uriParts[3]+" "+nameAlpha);
-		showSuccess(event);
-	} else {
-		if (prefOverwrite == 0 || prefOverwrite == 3) widget.system(prefLocation+"montage -background none -alpha set "+scale+colors+" -geometry "+geometry+mode+uri.join(" ")+" "+name, endHandler).outputString;
-		if (prefOverwrite == 1 || prefOverwrite == 3) widget.system(prefLocation+"montage -background none -alpha off "+scale+colors+" -geometry "+geometry+mode+uri.join(" ")+" "+nameRGB, endHandler).outputString;
-		if (prefOverwrite == 2 || prefOverwrite == 3) widget.system(prefLocation+"montage -background none -alpha extract "+scale+colors+" -geometry "+geometry+mode+uri.join(" ")+" "+nameAlpha, endHandler).outputString;
-		alert(prefLocation+"montage -background none -alpha extract "+scale+colors+" -geometry "+geometry+mode+uri.join(" ")+" "+nameAlpha);
-		showSuccess(event);
-	}*/
+	uri = uriClean(uri);
+	if (uri=="") return showFail(event);
 
 	for (var i=0; i<uri.length; i++) {
-		alert(prefLocation+"pngquant"+settings+uri[i]);
-		widget.system(prefLocation+"pngquant"+settings+uri[i], endHandler).outputString;
+		uri[i] = uri[i].match(/(\/.+\/)(.+?)(\.\w{3,4})$/);
+	}
+
+//	alert("uri list: "+uri.join("\n"));
+
+	// Median Cut settings
+var	settings1  = (prefOverwrite)?" -force":"";
+	settings1 += " -speed "+(prefQuality+1);
+	settings1 += (prefIE6 == true)?" -iebug":"";
+	settings1 += " -nofs";
+	settings1 += " -ext "+prefName+prefColors+prefName+"mc";
+	settings1 += (prefIE6 == true)?prefName+"ie6":"";
+	settings1 += ".png "+prefColors+" ";
+
+var	settings1d  = (prefOverwrite)?" -force":"";
+	settings1d += " -speed "+(prefQuality+1);
+	settings1d += (prefIE6 == true)?" -iebug":"";
+	settings1d += " -ext "+prefName+prefColors+prefName+"mc";
+	settings1d += prefName+"d";
+	settings1d += (prefIE6 == true)?prefName+"ie6":"";
+	settings1d += ".png "+prefColors+" ";
+
+	// Posterizer settings in two parts (command structure and naming convention)
+var settings2 = " "+parseInt(10+prefColors*118/256)+" < ";
+var settings2d = " -d "+parseInt(10+prefColors*118/256)+" < ";
+var	settingsName2  = prefName+prefColors+prefName+"pz.png";
+var	settingsName2d  = prefName+prefColors+prefName+"pz"+prefName+"d.png";
+
+	for (var i=0; i<uri.length; i++) {
+		alert(prefLocation+"pngquant"+settings1+uri[i][0]);
+		alert(prefLocation+"pngquant"+settings1d+uri[i][0]);
+		if (prefType == 0 || prefType == 2) {
+			if (prefDither == 0 || prefDither == 2) widget.system(prefLocation+"pngquant"+settings1+uri[i][0], endHandler).outputString;
+			if (prefDither == 1 || prefDither == 2) widget.system(prefLocation+"pngquant"+settings1d+uri[i][0], endHandler).outputString;
+		}
 //		/opt/local/bin/pngquant -force -speed 1 -ext .$1.dither.png $1 "$f"
 //		/opt/local/bin/pngquant -force -nofs -speed 1 -ext .$1.png $1 "$f"
+//		/opt/local/bin/posterizer -d 255 < test.png > test.255.d.png
+		alert(prefLocation+"posterizer"+settings2+uri[i][0]+" > "+uri[i][1]+uri[i][2]+settingsName2);
+		alert(prefLocation+"posterizer"+settings2d+uri[i][0]+" > "+uri[i][1]+uri[i][2]+settingsName2d);
+		if (prefType == 1 || prefType == 2) {
+			if (prefDither == 0 || prefDither == 2) widget.system(prefLocation+"posterizer"+settings2+uri[i][0]+" > "+uri[i][1]+uri[i][2]+settingsName2, endHandler).outputString;
+			if (prefDither == 1 || prefDither == 2) widget.system(prefLocation+"posterizer"+settings2d+uri[i][0]+" > "+uri[i][1]+uri[i][2]+settingsName2d, endHandler).outputString;
+		}
 		if (i+1==uri.length) showSuccess(event);
 	}
 
@@ -395,6 +396,16 @@ function sortAlphaNum(a, b) {
 		}
 	}
 	return 0;
+}
+
+function uriClean(arr) {
+	var arr2 = [];
+	for(var i=0; i<arr.length; i++) {
+		if (arr[i].match(".png")) {
+			arr2.push(arr[i]);
+		}
+	}
+	return arr2;
 }
 
 
@@ -469,7 +480,7 @@ function versionCheckEnd(request){
 //			alert("you have an up to date version");
 		}
 	} else {
-//		alert("there's been an error fetching HTTP data");
+		alert("there's been an error fetching HTTP data");
 	}
 }
 

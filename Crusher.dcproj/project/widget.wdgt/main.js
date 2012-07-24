@@ -120,15 +120,12 @@ if (window.widget) {
 // Begin app-specific functions //
 // ---------------------------- //
 
-
-alert("initialising prefs");
 var wid = widget.identifier;
-var prefMedian = loadPref(wid+"median",true);
-var prefPosterize = loadPref(wid+"posterize",false);
-var prefDither = loadPref(wid+"dither",false);
+var prefType = loadPref(wid+"type",0);
+var prefDither = loadPref(wid+"dither",0);
 var prefColors = loadPref(wid+"colors","256");
 var prefLocation = loadPref(wid+"loc","/opt/local/bin/");
-var prefQuality = loadPref(wid+"quality",2);
+var prefQuality = loadPref(wid+"quality",0);
 var prefOverwrite = loadPref(wid+"overwrite",1);
 var prefName = loadPref(wid+"name",".");
 var prefIE6 = loadPref(wid+"ie6","false");
@@ -146,13 +143,8 @@ function loadPref(key,value) {
 }
 
 function loadPrefs() {
-	alert("loading prefs");
-	alert("prefMedian: "+prefMedian);
-	alert("prefPostrz: "+prefPosterize);
-	alert("prefDither: "+prefDither);
-	document.getElementById("medianInput").checked = prefMedian;
-	document.getElementById("posterizeInput").checked = prefPosterize;
-	document.getElementById("ditherInput").checked = prefDither;
+	document.getElementById("type").object.setSelectedIndex(prefType);
+	document.getElementById("dither").object.setSelectedIndex(prefDither);
 	document.getElementById("colors").value = prefColors;
 	document.getElementById("loc").value = prefLocation;
 	document.getElementById("quality").object.setSelectedIndex(prefQuality);
@@ -164,8 +156,7 @@ function loadPrefs() {
 
 function updatePrefs() {
 	if (window.widget) {
-		widget.setPreferenceForKey(prefMedian,wid+"median");
-		widget.setPreferenceForKey(prefPosterize,wid+"posterize");
+		widget.setPreferenceForKey(prefType,wid+"type");
 		widget.setPreferenceForKey(prefDither,wid+"dither");
 		widget.setPreferenceForKey(prefColors,wid+"colors");
 		widget.setPreferenceForKey(prefLocation,wid+"loc");
@@ -178,8 +169,7 @@ function updatePrefs() {
 
 function erasePrefs() {
 	if (window.widget) {
-		widget.setPreferenceForKey(null,wid+"median");
-		widget.setPreferenceForKey(null,wid+"posterize");
+		widget.setPreferenceForKey(null,wid+"type");
 		widget.setPreferenceForKey(null,wid+"dither");
 		widget.setPreferenceForKey(null,wid+"colors");
 		widget.setPreferenceForKey(null,wid+"loc");
@@ -193,7 +183,6 @@ function erasePrefs() {
 // Basic Functions
 
 function updateSlider(event) {
-//	alert("updateSlider parse: "+parseInt(parseFloat(document.getElementById("slider").value)));
 	prefColors = parseInt(parseFloat(document.getElementById("slider").value));
 	document.getElementById("colors").value = prefColors;
 	document.getElementById("slider").value = prefColors;
@@ -232,65 +221,34 @@ function updateColors(event) {
 	document.getElementById("slider").value = prefColors;
 }
 
-function updateMedian(event) {
-	if (event.target.id == "medianInput") {
-		prefMedian = event.target.checked;
-//		prefMedian = document.getElementById("medianInput").checked;
-	} else {
-		var element = document.getElementById("medianInput");
-		element.checked = (element.checked)?false:true; // Invert current selection when clicking on text
-		prefMedian = element.checked;
-	}
-	updatePrefs();
-	alert("prefMedian: "+prefMedian);
-}
 
-function updatePosterize(event) {
-	if (event.target.id == "posterizeInput") {
-		prefPosterize = event.target.checked;
-//		prefPosterize = document.getElementById("posterizeInput").checked;
-	} else {
-		var element = document.getElementById("posterizeInput");
-		element.checked = (element.checked)?false:true; // Invert current selection when clicking on text
-		prefPosterize = element.checked;
-	}
+
+function updateType(event) {
+	prefType = document.getElementById("type").object.getSelectedIndex();
 	updatePrefs();
-	alert("prefPosterize: "+prefPosterize);
 }
 
 function updateDither(event) {
-	if (event.target.id == "ditherInput") {
-		prefDither = event.target.checked;
-//		prefDither = document.getElementById("ditherInput").checked;
-	} else {
-		var element = document.getElementById("ditherInput");
-		element.checked = (element.checked)?false:true; // Invert current selection when clicking on text
-		prefDither = element.checked;
-	}
+	prefDither = document.getElementById("dither").object.getSelectedIndex();
 	updatePrefs();
-	alert("prefDither: "+prefDither);
 }
 
 function updateLoc(event) {
 	prefLoc = document.getElementById("loc").value;
-	alert("prefLoc: "+prefLoc);
 }
 
 function updateQuality(event) {
 	prefQuality = document.getElementById("quality").object.getSelectedIndex();
 	updatePrefs();
-	alert("prefQuality: "+prefQuality);
 }
 
 function updateOverwrite(event) {
 	prefOverwrite = document.getElementById("overwrite").object.getSelectedIndex();
 	updatePrefs();
-	alert("prefOverwrite: "+prefOverwrite);
 }
 
 function updateName(event) {
 	prefName = document.getElementById("name").value;
-	alert("prefName: "+prefName);
 }
 
 function updateIE6(event) {
@@ -303,7 +261,6 @@ function updateIE6(event) {
 		prefIE6 = element.checked;
 	}
 	updatePrefs();
-	alert("prefIE6: "+prefIE6);
 }
 
 
@@ -342,34 +299,52 @@ try {
 	uri = uri.sort(sortAlphaNum);
 	uri = uriClean(uri);
 	if (uri=="") return showFail(event);
-	alert("uri list: "+uri.join("\n"));
-
-	// Median Cut settings
-var	settings  = (prefOverwrite)?" -force":"";
-	settings += " -speed "+(prefQuality+1);
-	settings += (prefDither == true)?"":" -nofs";
-	settings += (prefIE6 == true)?" -iebug":"";
-	settings += " -ext "+prefName+prefColors+prefName+"mc";
-	settings += (prefDither == true)?prefName+"d":"";
-	settings += (prefIE6 == true)?prefName+"ie6":"";
-	settings += ".png "+prefColors+" ";
-	alert("settings: "+settings);
-
-	// Posterizer settings in two parts (command structure and naming convention)
-var settings2  = (prefDither == true)?" -d":"";
-	settings2 += " "+parseInt(10+prefColors*118/256)+" < ";
-
-var settings3  = prefName+prefColors+prefName+"pz";
-	settings3 += (prefDither == true)?prefName+"d.png":".png";
 
 	for (var i=0; i<uri.length; i++) {
-		alert(prefLocation+"pngquant"+settings+uri[i]);
-		if (prefMedian) widget.system(prefLocation+"pngquant"+settings+uri[i], endHandler).outputString;
+		uri[i] = uri[i].match(/(\/.+\/)(.+?)(\.\w{3,4})$/);
+	}
+
+//	alert("uri list: "+uri.join("\n"));
+
+	// Median Cut settings
+var	settings1  = (prefOverwrite)?" -force":"";
+	settings1 += " -speed "+(prefQuality+1);
+	settings1 += (prefIE6 == true)?" -iebug":"";
+	settings1 += " -nofs";
+	settings1 += " -ext "+prefName+prefColors+prefName+"mc";
+	settings1 += (prefIE6 == true)?prefName+"ie6":"";
+	settings1 += ".png "+prefColors+" ";
+
+var	settings1d  = (prefOverwrite)?" -force":"";
+	settings1d += " -speed "+(prefQuality+1);
+	settings1d += (prefIE6 == true)?" -iebug":"";
+	settings1d += " -ext "+prefName+prefColors+prefName+"mc";
+	settings1d += prefName+"d";
+	settings1d += (prefIE6 == true)?prefName+"ie6":"";
+	settings1d += ".png "+prefColors+" ";
+
+	// Posterizer settings in two parts (command structure and naming convention)
+var settings2 = " "+parseInt(10+prefColors*118/256)+" < ";
+var settings2d = " -d "+parseInt(10+prefColors*118/256)+" < ";
+var	settingsName2  = prefName+prefColors+prefName+"pz.png";
+var	settingsName2d  = prefName+prefColors+prefName+"pz"+prefName+"d.png";
+
+	for (var i=0; i<uri.length; i++) {
+		alert(prefLocation+"pngquant"+settings1+uri[i][0]);
+		alert(prefLocation+"pngquant"+settings1d+uri[i][0]);
+		if (prefType == 0 || prefType == 2) {
+			if (prefDither == 0 || prefDither == 2) widget.system(prefLocation+"pngquant"+settings1+uri[i][0], endHandler).outputString;
+			if (prefDither == 1 || prefDither == 2) widget.system(prefLocation+"pngquant"+settings1d+uri[i][0], endHandler).outputString;
+		}
 //		/opt/local/bin/pngquant -force -speed 1 -ext .$1.dither.png $1 "$f"
 //		/opt/local/bin/pngquant -force -nofs -speed 1 -ext .$1.png $1 "$f"
 //		/opt/local/bin/posterizer -d 255 < test.png > test.255.d.png
-		alert(prefLocation+"posterizer"+settings2+uri[i]+" > "+uri[i].replace(".png",settings3));
-		if (prefPosterize) widget.system(prefLocation+"posterizer"+settings2+uri[i]+" > "+uri[i].replace(".png",settings3), endHandler).outputString;
+		alert(prefLocation+"posterizer"+settings2+uri[i][0]+" > "+uri[i][1]+uri[i][2]+settingsName2);
+		alert(prefLocation+"posterizer"+settings2d+uri[i][0]+" > "+uri[i][1]+uri[i][2]+settingsName2d);
+		if (prefType == 1 || prefType == 2) {
+			if (prefDither == 0 || prefDither == 2) widget.system(prefLocation+"posterizer"+settings2+uri[i][0]+" > "+uri[i][1]+uri[i][2]+settingsName2, endHandler).outputString;
+			if (prefDither == 1 || prefDither == 2) widget.system(prefLocation+"posterizer"+settings2d+uri[i][0]+" > "+uri[i][1]+uri[i][2]+settingsName2d, endHandler).outputString;
+		}
 		if (i+1==uri.length) showSuccess(event);
 	}
 
@@ -505,7 +480,7 @@ function versionCheckEnd(request){
 //			alert("you have an up to date version");
 		}
 	} else {
-//		alert("there's been an error fetching HTTP data");
+		alert("there's been an error fetching HTTP data");
 	}
 }
 

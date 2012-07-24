@@ -50,10 +50,10 @@ body {
 #input {
     position: absolute;
     margin-top: 0px;
-    border-top-left-radius: 5px 5px;
-    border-top-right-radius: 5px 5px;
-    border-bottom-left-radius: 5px 5px;
-    border-bottom-right-radius: 5px 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     border-width: 1px !important;
     border-style: solid;
     font-size: 13px;
@@ -74,7 +74,7 @@ body {
     margin-left: 0px;
     margin-top: 0px;
     margin-bottom: 0px;
-    border-color: rgba(0, 0, 0, 0.496094);
+    border-color: rgba(0, 0, 0, 0.5);
     width: auto;
     margin-right: 0px;
     min-height: 140px;
@@ -362,20 +362,21 @@ body {
 #loc {
     position: absolute;
     color: rgb(255, 255, 255);
-    border-top-left-radius: 5px 5px;
-    border-top-right-radius: 5px 5px;
-    border-bottom-left-radius: 5px 5px;
-    border-bottom-right-radius: 5px 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     border-width: 1px;
     border-style: solid;
     font-family: 'Helvetica Neue';
     text-align: left;
     border-color: rgb(0, 0, 0);
-    width: 156px;
     font-size: 14px;
-    left: 120px;
     top: 18px;
     background-color: rgb(13, 13, 13);
+    right: 20px;
+    margin-left: auto;
+    width: 126px;
 }
 
 #locationText {
@@ -386,12 +387,12 @@ body {
     color: rgb(255, 255, 255);
     text-align: left;
     font-size: 12px;
-    width: 95px;
     height: 15px;
     top: 23px;
     left: 20px;
     margin-right: auto;
     margin-bottom: auto;
+    width: 130px;
 }
 
 #successDetails {
@@ -418,22 +419,21 @@ body {
     position: absolute;
     font-family: HelveticaNeue;
     color: rgb(255, 255, 255);
-    border-top-left-radius: 5px 5px;
-    border-top-right-radius: 5px 5px;
-    border-bottom-left-radius: 5px 5px;
-    border-bottom-right-radius: 5px 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     border-width: 1px;
     border-style: solid;
     overflow: hidden;
-    text-align: left;
     border-color: rgb(0, 0, 0);
-    width: 71px;
-    right: 105px;
-    margin-left: auto;
-    top: 93px;
-    margin-bottom: auto;
     font-size: 14px;
     background-color: rgb(13, 13, 13);
+    top: 93px;
+    right: 90px;
+    margin-left: auto;
+    text-align: center;
+    width: 56px;
 }
 
 #overwriteText {
@@ -443,7 +443,6 @@ body {
     position: absolute;
     color: rgb(255, 255, 255);
     text-align: left;
-    width: 95px;
     font-size: 12px;
     height: 15px;
     margin-right: auto;
@@ -452,6 +451,7 @@ body {
     bottom: auto;
     top: 73px;
     left: 20px;
+    width: 130px;
 }
 
 #quality {
@@ -462,12 +462,12 @@ body {
     text-shadow: rgb(0, 0, 0) 0px -1px 1px;
     text-align: left;
     font-family: 'Helvetica Neue';
-    width: 160px;
-    left: 120px;
     height: 19px;
     top: 45px;
-    margin-right: auto;
     margin-bottom: auto;
+    right: 20px;
+    margin-left: auto;
+    width: 130px;
 }
 
 #overwrite {
@@ -477,13 +477,13 @@ body {
     text-shadow: rgb(0, 0, 0) 0px -1px 1px;
     text-align: left;
     font-family: 'Helvetica Neue';
-    width: 160px;
     height: 19px;
     font-size: 14px;
     top: 70px;
     right: 20px;
     margin-left: auto;
     margin-bottom: auto;
+    width: 130px;
 }
 
 #qualityText {
@@ -493,13 +493,13 @@ body {
     position: absolute;
     color: rgb(255, 255, 255);
     text-align: left;
-    width: 95px;
     font-size: 12px;
     height: 15px;
     top: 48px;
     left: 20px;
     margin-right: auto;
     margin-bottom: auto;
+    width: 130px;
 }
 
 #dropDetail {
@@ -527,15 +527,16 @@ body {
     position: absolute;
     left: 0px;
     height: 48px;
-    border-top-left-radius: 5px 5px;
-    border-top-right-radius: 5px 5px;
-    border-bottom-left-radius: 5px 5px;
-    border-bottom-right-radius: 5px 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     background-color: rgb(13, 13, 13);
     width: 258px;
     margin-right: auto;
     bottom: 0px;
     margin-top: auto;
+    -khtml-user-select: text;
 }
 
 #namingText {
@@ -545,13 +546,13 @@ body {
     position: absolute;
     color: rgb(255, 255, 255);
     text-align: left;
-    width: 95px;
     font-size: 12px;
     height: 15px;
-    top: 98px;
     left: 20px;
+    top: 98px;
     margin-right: auto;
     margin-bottom: auto;
+    width: 130px;
 }
 
 #image {
@@ -580,113 +581,43 @@ body {
     height: auto;
 }
 
-#dither {
-    font-family: HelveticaNeue;
-    height: 18px;
-    position: absolute;
-    right: auto;
-    left: 5px;
-    bottom: 3px;
-    margin-top: auto;
-    margin-right: auto;
-    color: rgb(255, 255, 255);
-    font-size: 10pt;
-    width: 60px;
-}
-
-#ditherText {
-    position: absolute;
-    left: 18px;
-    text-align: left;
-    vertical-align: middle;
-    font-size: 13px;
-    top: 1px;
-    width: auto;
-    bottom: 2px;
-    height: auto;
-    right: 6px;
-}
-
-#ie6 {
-    font-family: HelveticaNeue;
-    height: 18px;
-    position: absolute;
-    color: rgb(255, 255, 255);
-    font-size: 10pt;
-    width: 60px;
-    left: 99px;
-    margin-right: auto;
-    bottom: 3px;
-    margin-top: auto;
-}
-
-#ie6Text {
-    position: absolute;
-    left: 18px;
-    text-align: left;
-    vertical-align: middle;
-    top: 1px;
-    width: auto;
-    bottom: 2px;
-    height: auto;
-    right: 6px;
-    font-size: 13px;
-}
-
 #colorsText {
     position: absolute;
     vertical-align: middle;
     font-weight: normal;
     font-style: normal;
     font-family: HelveticaNeue;
-    font-size: 13px;
     color: rgb(255, 255, 255);
     height: 15px;
     text-align: right;
-    width: 35px;
+    font-size: 14px;
+    right: 6px;
     margin-left: auto;
+    bottom: 6px;
     margin-top: auto;
-    left: auto;
-    top: auto;
-    right: 5px;
-    bottom: 5px;
+    width: 40px;
+    cursor: default;
+    -khtml-user-select: none;
 }
 
 #colors {
     position: absolute;
     font-family: HelveticaNeue;
     background-color: rgb(13, 13, 13);
-    border-top-left-radius: 5px 5px;
-    border-top-right-radius: 5px 5px;
-    border-bottom-left-radius: 5px 5px;
-    border-bottom-right-radius: 5px 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
     color: rgb(255, 255, 255);
     border-width: 0px;
     border-color: rgb(0, 0, 0);
     text-align: center;
-    width: 40px;
-    right: 40px;
+    font-size: 14px;
+    width: 30px;
+    right: 48px;
     margin-left: auto;
     bottom: 2px;
     margin-top: auto;
-    font-size: 14px;
-}
-
-#nameText {
-    font-family: HelveticaNeue;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    position: absolute;
-    color: rgb(255, 255, 255);
-    opacity: 0.5;
-    height: 12px;
-    text-align: center;
-    width: 75px;
-    top: 114px;
-    right: 105px;
-    margin-left: auto;
-    margin-bottom: auto;
-    font-size: 11px;
 }
 
 #slider {
@@ -708,84 +639,84 @@ body {
     right: 0px;
 }
 
-#nameDither {
-    position: absolute;
+#ie6 {
     font-family: HelveticaNeue;
-    color: rgb(255, 255, 255);
-    border-top-left-radius: 5px 5px;
-    border-top-right-radius: 5px 5px;
-    border-bottom-left-radius: 5px 5px;
-    border-bottom-right-radius: 5px 5px;
-    border-width: 1px;
-    border-style: solid;
-    overflow: hidden;
-    text-align: left;
-    border-color: rgb(0, 0, 0);
-    width: 71px;
-    right: 20px;
-    margin-left: auto;
-    top: 93px;
-    margin-bottom: auto;
-    font-size: 14px;
-    background-color: rgb(13, 13, 13);
-}
-
-#nameDitherText {
-    font-family: HelveticaNeue;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    height: 18px;
     position: absolute;
     color: rgb(255, 255, 255);
-    opacity: 0.5;
-    height: 12px;
-    text-align: center;
-    width: 75px;
-    top: 114px;
-    right: 20px;
-    margin-left: auto;
-    margin-bottom: auto;
-    font-size: 11px;
-}
-
-#nameIE6 {
-    position: absolute;
-    font-family: HelveticaNeue;
-    color: rgb(255, 255, 255);
-    border-top-left-radius: 5px 5px;
-    border-top-right-radius: 5px 5px;
-    border-bottom-left-radius: 5px 5px;
-    border-bottom-right-radius: 5px 5px;
-    border-width: 1px;
-    border-style: solid;
-    overflow: hidden;
-    text-align: left;
-    border-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.496094);
     font-size: 10pt;
-    width: 71px;
-    right: 20px;
-    margin-left: auto;
-    margin-bottom: auto;
-    top: 103px;
-    left: 215px;
-    visibility: hidden;
+    width: 60px;
+    left: 223px;
+    margin-right: auto;
+    bottom: 66px;
+    margin-top: auto;
 }
 
-#nameIE6Text {
-    font-family: HelveticaNeue;
+#ie6Text {
+    position: absolute;
+    left: 18px;
+    text-align: left;
+    vertical-align: middle;
+    top: 1px;
+    width: auto;
+    bottom: 2px;
+    height: auto;
+    right: 6px;
+    font-size: 13px;
+}
+
+#type {
+    position: absolute;
+    font-size: 14px;
+    cursor: default;
+    -khtml-user-select: none;
+    text-shadow: rgb(0, 0, 0) 0px -1px 0px;
+    color: rgb(255, 255, 255);
+    font-family: 'Helvetica Neue';
+    letter-spacing: 0px;
+    height: 25px;
+    left: 0px;
+    margin-right: auto;
+    bottom: 0px;
+    margin-top: auto;
+    text-align: left;
+    width: 90px;
+}
+
+#dither {
+    position: absolute;
+    font-size: 14px;
+    cursor: default;
+    -khtml-user-select: none;
+    text-shadow: rgb(0, 0, 0) 0px -1px 0px;
+    color: rgb(255, 255, 255);
+    font-family: 'Helvetica Neue';
+    letter-spacing: 0px;
+    height: 25px;
+    text-align: left;
+    width: 85px;
+    left: 90px;
+    margin-right: auto;
+    bottom: 0px;
+    margin-top: auto;
+}
+
+#failDetails {
     text-overflow: ellipsis;
     overflow: hidden;
     position: absolute;
+    margin-top: 0px;
     color: rgb(255, 255, 255);
-    opacity: 0.5;
-    font-size: 8pt;
-    height: 12px;
+    text-shadow: rgb(0, 0, 0) 0px -1px 1px;
+    min-height: 0px;
     text-align: center;
-    width: 75px;
-    right: 20px;
-    margin-left: auto;
+    width: auto;
     margin-bottom: auto;
-    top: 124px;
-    left: 215px;
-    visibility: hidden;
+    left: 20px;
+    right: 20px;
+    top: 70px;
+    height: 50px;
+    font-family: 'Helvetica Neue';
+    opacity: 0.5;
+    font-size: 12px;
 }
